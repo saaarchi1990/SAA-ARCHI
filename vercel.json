@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projects/:slug",
+      "destination": "/index.html"
+    }
+  ]
+}

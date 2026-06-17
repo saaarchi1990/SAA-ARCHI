@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAA ARCHI - Admin projets</title>
+    <link rel="stylesheet" href="styles.css?v=20260616-6" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <a class="admin-brand" href="index.html#accueil">
+          <img src="logo1.jpg" alt="S.A.A ARCHI Logo" />
+          <span><strong>SAA</strong> ARCHI</span>
+        </a>
+        <div>
+          <p class="section-kicker">CMS</p>
+          <h1>Gestion des projets</h1>
+          <p>Ajoutez, modifiez ou supprimez les projets affichés sur le portfolio.</p>
+        </div>
+      </section>
+
+      <section class="admin-card" data-config-warning hidden>
+        <h2>Configuration requise</h2>
+        <p>Connectez Supabase dans <code>cms-config.js</code>, puis créez la table avec <code>supabase-schema.sql</code>.</p>
+      </section>
+
+      <section class="admin-card" data-login>
+        <h2>Connexion admin</h2>
+        <form class="admin-form compact" data-login-form>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Mot de passe</span>
+            <input type="password" name="password" required />
+          </label>
+          <button type="submit">Se connecter</button>
+          <p class="form-note" data-login-note></p>
+        </form>
+      </section>
+
+      <section class="admin-workspace" data-admin hidden>
+        <div class="admin-toolbar">
+          <div>
+            <p class="section-kicker">Portfolio</p>
+            <h2>Projets</h2>
+          </div>
+          <div class="admin-actions">
+            <button type="button" data-import-json>Importer projects.json</button>
+            <button type="button" data-logout>Déconnexion</button>
+          </div>
+        </div>
+
+        <div class="admin-layout">
+          <form class="admin-card admin-form" data-project-form>
+            <input type="hidden" name="id" />
+            <h2 data-form-title>Nouveau projet</h2>
+            <label>
+              <span>Nom du projet *</span>
+              <input type="text" name="title" required />
+            </label>
+            <div class="admin-two">
+              <label>
+                <span>Date</span>
+                <input type="text" name="date" placeholder="2026" />
+              </label>
+              <label>
+                <span>Catégorie *</span>
+                <select name="category" required>
+                  <option>BATIMENT CIVIL</option>
+                  <option>HOTELLERIE</option>
+                  <option>IMMEUBLE</option>
+                  <option>TERTIAIRE</option>
+                  <option>VILLA</option>
+                  <option>INTERIEUR</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              <span>Image principale *</span>
+              <input type="url" name="thumbnail" placeholder="https://..." required />
+            </label>
+            <label>
+              <span>Images galerie</span>
+              <textarea name="images" rows="4" placeholder="Une URL d'image par ligne"></textarea>
+            </label>
+            <div class="admin-two">
+              <label>
+                <span>Localisation</span>
+                <input type="text" name="location" />
+              </label>
+              <label>
+                <span>Surface</span>
+                <input type="text" name="area_label" placeholder="500m²" />
+              </label>
+            </div>
+            <div class="admin-two">
+              <label>
+                <span>Statut</span>
+                <input type="text" name="status" placeholder="En cours" />
+              </label>
+              <label>
+                <span>Ordre</span>
+                <input type="number" name="sort_order" value="100" />
+              </label>
+            </div>
+            <label>
+              <span>Description</span>
+              <textarea name="description" rows="6"></textarea>
+            </label>
+            <div class="admin-actions">
+              <button type="submit">Enregistrer</button>
+              <button type="button" data-reset-form>Annuler</button>
+            </div>
+            <p class="form-note" data-project-note></p>
+          </form>
+
+          <div class="admin-card project-admin-list" data-project-list>
+            <p class="loading">Chargement des projets...</p>
+          </div>
+        </div>
+
+        <section class="admin-card site-content-admin">
+          <div class="admin-toolbar compact-toolbar">
+            <div>
+              <p class="section-kicker">Pages</p>
+              <h2>Textes du site</h2>
+              <p>Modifiez les descriptions de l'accueil, À propos, Contact et footer sans toucher au code.</p>
+            </div>
+            <button type="button" data-save-site-content>Enregistrer les textes</button>
+          </div>
+          <form class="site-content-form" data-site-content-form>
+            <p class="loading">Chargement des textes...</p>
+          </form>
+          <p class="form-note" data-site-content-note></p>
+        </section>
+      </section>
+    </main>
+
+    <script src="cms-config.js?v=20260616-6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js?v=20260616-6"></script>
+  </body>
+</html>
