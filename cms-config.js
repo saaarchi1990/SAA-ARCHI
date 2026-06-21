@@ -1,4 +1,4 @@
 window.SAA_CMS = {
-  supabaseUrl: "YOUR_SUPABASE_URL",
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
+  supabaseUrl: "https://mizbapowsndzwvhxespb.supabase.co",
+  supabaseAnonKey: "sb_publishable_W-Ff54KYayPN4w26tw1mzw_AMgxdEOP",
 };
