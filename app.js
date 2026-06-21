@@ -620,10 +620,32 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener("popstate", handleRoute);
 window.addEventListener("hashchange", handleRoute);
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  form.reset();
-  formNote.textContent = "Merci pour votre message ! Nous vous contacterons bientôt.";
+const submitButton = form.querySelector('button[type="submit"]');
+  const payload = Object.fromEntries(new FormData(form).entries());
+
+  formNote.textContent = "Envoi du message...";
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) throw new Error("Message not sent");
+
+    form.reset();
+    formNote.textContent = "Merci pour votre message ! Nous vous contacterons bientôt.";
+  } catch (error) {
+    formNote.textContent = "Le message n'a pas pu être envoyé. Vous pouvez nous écrire directement à contact@saa-archi.com.tn.";
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
 });
 
 async function loadProjects() {
